@@ -1,0 +1,25 @@
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        resIdx = 0
+        resWin = 0
+
+        for i in range(0, len(s)):
+
+            left, right = i, i
+            while left >= 0 and right < len(s) and s[left] == s[right]:
+                if(right - left > resWin):
+                    resIdx = left
+                    resWin = right - left
+                left -= 1
+                right += 1
+
+            left, right = i, i + 1
+            while left >= 0 and right < len(s) and s[left] == s[right] :
+                if(right - left > resWin):
+                    resIdx = left
+                    resWin = right - left
+                left -= 1
+                right += 1
+        
+        return s[resIdx: resIdx + resWin + 1]
+        
